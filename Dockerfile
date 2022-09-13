@@ -7,7 +7,7 @@ RUN git clone -b v1.48.1 https://github.com/grpc/grpc \
 && mkdir -p cmake/build \
 && cd cmake/build \
 && cmake ../.. \
-&& make protoc grpc_php_plugin \
-&& cp /data/grpc/cmake/build/grpc_php_plugin /usr/bin/ \
-&& cp /data/grpc/cmake/build/third_party/protobuf/protoc* /usr/bin/ \
-&& rm -rf /data/grpc
+&& make protoc grpc_php_plugin
+#&& cp /data/grpc/cmake/build/grpc_php_plugin /usr/bin/ \
+#&& cp /data/grpc/cmake/build/third_party/protobuf/protoc* /usr/bin/ \
+#&& rm -rf /data/grpc
