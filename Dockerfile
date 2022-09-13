@@ -8,11 +8,7 @@ RUN apt-get update && apt-get install -y git procps inetutils-ping net-tools cma
     && docker-php-ext-install -j$(nproc) gd \
     && pecl install redis-5.3.7 \
     && docker-php-ext-install pdo pdo_mysql mysqli zip grpc \
-    && docker-php-ext-enable redis \
-    && curl -sfL https://getcomposer.org/installer | php -- --install-dir=/usr/bin --filename=composer \
-    && chmod +x /usr/bin/composer \
-    && composer self-update 2.3.10 \
-    && composer config -g repo.packagist composer https://mirrors.aliyun.com/composer/
+    && docker-php-ext-enable redis
 
 RUN git clone -b v1.48.1 https://github.com/grpc/grpc \
     && cd grpc \
