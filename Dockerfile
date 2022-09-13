@@ -11,8 +11,8 @@ RUN git clone -b v1.48.1 https://github.com/grpc/grpc \
     && cd cmake/build \
     && cmake ../.. \
     && make protoc grpc_php_plugin \
-    && COPY /var/www/html/grpc/cmake/build/grpc_php_plugin /usr/bin/ \
-    && COPY /var/www/html/grpc/cmake/build/third_party/protobuf/protoc* /usr/bin/ \
+    && cp /var/www/html/grpc/cmake/build/grpc_php_plugin /usr/bin/ \
+    && cp /var/www/html/grpc/cmake/build/third_party/protobuf/protoc* /usr/bin/ \
     && rm -rf ./grpc \
     && docker-php-ext-configure gd --with-freetype --with-jpeg \
     && docker-php-ext-install -j$(nproc) gd \
