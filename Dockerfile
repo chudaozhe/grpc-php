@@ -10,4 +10,5 @@ RUN apt-get update && apt-get install -y cmake git zlib1g-dev \
     && cp third_party/protobuf/protoc /usr/bin/ \
     && cp grpc_php_plugin /usr/bin/ \
     && pecl install grpc protobuf \
-    && docker-php-ext-enable grpc protobuf
+    && docker-php-ext-enable grpc protobuf \
+    && rm -rf /var/www/html/*

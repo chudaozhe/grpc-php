@@ -3,7 +3,7 @@ name: actions
 on: [push, pull_request] # 触发事件
 
 jobs:
-  bt-product-release:
+  build_and_push:
     if: ${{ github.ref == 'refs/heads/master' }}  # 检测main分支是否有更新
     runs-on: ubuntu-latest
     steps:
