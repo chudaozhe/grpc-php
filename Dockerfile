@@ -9,4 +9,5 @@ RUN apt-get update && apt-get install -y cmake git \
     && make protoc grpc_php_plugin \
     && cp third_party/protobuf/protoc /usr/bin/ \
     && cp grpc_php_plugin /usr/bin/ \
-    && docker-php-ext-install grpc protobuf
+    && pecl install grpc protobuf \
+    && docker-php-ext-enable grpc protobuf
