@@ -1,5 +1,5 @@
 FROM php:8.1.9-fpm
-RUN apt-get update && apt-get install -y cmake git \
+RUN apt-get update && apt-get install -y cmake git libc6-dev \
     && git clone -b v1.60.0 https://github.com/grpc/grpc \
     && cd grpc \
     && git submodule update --init \
