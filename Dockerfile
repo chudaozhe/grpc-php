@@ -1,27 +1,12 @@
-FROM debian:buster-slim
-
-RUN apt-get update && apt-get install -y \
-        curl \
-        unzip \
-        git \
-        build-essential \
-        autoconf \
-        libtool \
-    && apt-get clean && rm -rf /var/lib/apt/lists/*
-
-WORKDIR /root
-
-RUN curl -LO https://github.com/protocolbuffers/protobuf/releases/download/v21.5/protoc-21.5-linux-x86_64.zip \
-    && unzip protoc-21.5-linux-x86_64.zip -d /opt/protoc \
-    && rm protoc-21.5-linux-x86_64.zip
-
-ENV PATH $PATH:/opt/protoc/bin
-
-RUN git clone -b v1.48.1 https://github.com/grpc/grpc \
+FROM php:8.1.9-fpm
+RUN apt-get update && apt-get install -y cmake git \
+    && git clone -b v1.60.0 https://github.com/grpc/grpc \
     && cd grpc \
     && git submodule update --init \
-    && make grpc_php_plugin \
-    && mkdir -p /opt/grpc \
-    && mv ./bins/opt /opt/grpc/bin \
-    && rm -rf /root/grpc
-
+    && mkdir -p cmake/build \
+    && cd cmake/build \
+    && cmake ../.. \
+    && make protoc grpc_php_plugin \
+    && cp third_party/protobuf/protoc /usr/bin/ \
+    && cp grpc_php_plugin /usr/bin/ \
+    && docker-php-ext-install grpc protobuf
