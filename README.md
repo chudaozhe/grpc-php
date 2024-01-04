@@ -7,12 +7,12 @@ docker build -f Dockerfile -t php-grpc:8.1.9-fpm-v1.0 .
 
 第二步：构建常用镜像
 
-`Dockerfile.demo` 详解：
+`demo.Dockerfile` 详解：
 第一阶段：加载基础镜像
 
 第二阶段：安装所需扩展，并复制grpc相关文件
 ```
-docker build -f Dockerfile.demo -t php:8.1.9-fpm-demo-v1.0 .
+docker build -f demo.Dockerfile -t php:8.1.9-fpm-demo-v1.0 .
 ```
 
 ## 参考
